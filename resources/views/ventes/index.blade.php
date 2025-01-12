@@ -12,7 +12,7 @@
 <body>
     <div class="container-fluid px-3 pb-5 mb-5">
         <div class="d-flex justify-content-between align-items-center py-3">
-            <h2 class="h4 mb-0">Liste des Ventes</h2>
+            <h2 class="h4 mb-0">Ventes</h2>
             <div>
                 <a href="{{ route('ventes.create') }}" class="btn btn-primary btn-sm">
                     <i class="fas fa-plus"></i> Nouvelle Vente
@@ -39,20 +39,24 @@
                     <tr>
                         <th>Date</th>
                         <th>Client</th>
-                        <th>Montant Total</th>
+                        <th>M. Total</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody id="ventesTable">
                     @foreach ($ventes as $vente)
                         <tr>
-                            <td>{{ $vente->created_at }}</td>
+                            <td>{{ $vente->created_at->format('Y-m-d') }}</td>
                             <td>{{ $vente->client->nom }}</td>
-                            <td>{{ number_format($vente->montant_total, 2) }} f</td>
+                            <td>{{ number_format($vente->montant_total) }}</td>
                             <td>
+                                <button class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#viewVenteModal{{ $vente->id }}">
+                                    <i class="fas fa-eye"></i>
+                                </button>
                                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#editVenteModal{{ $vente->id }}">
-                                    <i class="fas fa-edit"></i> 
+                                    <i class="fas fa-edit"></i>
                                 </button>
                                 <form action="{{ route('ventes.destroy', $vente->id) }}" method="POST"
                                     class="d-inline">
@@ -60,7 +64,7 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette vente ?')">
-                                        <i class="fas fa-trash"></i> 
+                                        <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
                             </td>
@@ -141,6 +145,54 @@
                             <button type="submit" class="btn btn-primary">Enregistrer</button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de visualisation -->
+        <div class="modal fade" id="viewVenteModal{{ $vente->id }}">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Détails de la Vente</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <p><strong>Client:</strong> {{ $vente->client->nom }}</p>
+                                <p><strong>Date:</strong> {{ $vente->created_at->format('d/m/Y') }}</p>
+                                <p><strong>Montant Total:</strong> {{ number_format($vente->montant_total) }} FCFA</p>
+                            </div>
+                        </div>
+
+                        <h6 class="mt-4">Produits</h6>
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Produit</th>
+                                        <th>Quantité</th>
+                                        <th>Prix unitaire</th>
+                                        <th>Sous-total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($vente->lignes as $ligne)
+                                        <tr>
+                                            <td>{{ $ligne->produit->nom }}</td>
+                                            <td>{{ $ligne->quantite }}</td>
+                                            <td>{{ number_format($ligne->prix_unitaire) }}</td>
+                                            <td>{{ number_format($ligne->quantite * $ligne->prix_unitaire) }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@
 <body>
     <div class="container-fluid px-3 pb-5 mb-5">
         <div class="d-flex justify-content-between align-items-center py-3">
-            <h2 class="h4 mb-0">Liste des Achats</h2>
+            <h2 class="h4 mb-0">Achats</h2>
             <div>
                 <a href="{{ route('achats.create') }}" class="btn btn-primary btn-sm">
                     <i class="fas fa-plus"></i> Nouvel Achat
@@ -40,21 +40,21 @@
                         <th>Date</th>
                         <th>Fournisseur</th>
                         <th>Produit</th>
-                        <th>Quantité</th>
-                        <th>Prix Unitaire</th>
-                        <th>Montant Total</th>
+                        <th>Qte</th>
+                        <th>P.U.</th>
+                        <th>M.Total</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody id="achatsTable">
                     @foreach ($achats as $achat)
                         <tr>
-                            <td>{{ $achat->created_at }}</td>
+                            <td>{{ $achat->created_at->format('Y-m-d') }}</td>
                             <td>{{ $achat->fournisseur->nom }}</td>
                             <td>{{ $achat->produit->nom }}</td>
                             <td>{{ $achat->quantite }}</td>
-                            <td>{{ number_format($achat->prix_unitaire, 2) }} f</td>
-                            <td>{{ number_format($achat->montant_total, 2) }} f</td>
+                            <td>{{ number_format($achat->prix_unitaire) }} f</td>
+                            <td>{{ number_format($achat->montant_total) }} f</td>
                             <td>
                                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#editAchatModal{{ $achat->id }}">

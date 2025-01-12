@@ -13,9 +13,9 @@
     <div class="container-fluid px-3">
         <div class="d-flex justify-content-between align-items-center py-3">
             <h2 class="h4 mb-0">Nouvelle Vente</h2>
-            <a href="{{ route('dashboard') }}" class="btn btn-outline-secondary">
-                    <i class="fas fa-times"></i>
-                </a>
+            <button onclick="goBack()" class="btn btn-outline-secondary btn-sm">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
 
         <form action="{{ route('ventes.store') }}" method="POST" id="venteForm">
@@ -145,6 +145,13 @@
         document.addEventListener('DOMContentLoaded', function() {
             ajouterProduit();
         });
+        function goBack() {
+            if (document.referrer) {
+                window.location.href = document.referrer;
+            } else {
+                window.location.href = "{{ route('dashboard') }}";
+            }
+        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

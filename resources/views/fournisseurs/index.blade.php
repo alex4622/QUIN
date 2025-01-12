@@ -15,7 +15,7 @@
             <h2 class="h4 mb-0">Fournisseurs</h2>
             <div>
                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addFournisseurModal">
-                    <i class="fas fa-plus"></i> Nouveau Fournisseur
+                    <i class="fas fa-plus"></i> Fournisseur
                 </button>
                 <button onclick="goBack()" class="btn btn-outline-secondary btn-sm">
                     <i class="fas fa-arrow-left"></i> Retour

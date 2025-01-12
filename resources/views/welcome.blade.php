@@ -155,7 +155,7 @@
                                                 {{ $ligne->produit->nom }} ({{ $ligne->quantite }})<br>
                                             @endforeach
                                         </td>
-                                        <td>{{ number_format($vente->montant_total) }} f</td>
+                                        <td>{{ number_format($vente->montant_total) }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -179,7 +179,7 @@
                                         <td>{{ $achat->date->format('d/m/Y') }}</td>
                                         <td>{{ $achat->fournisseur->nom }}</td>
                                         <td>{{ $achat->produit->nom }}</td>
-                                        <td>{{ number_format($achat->montant_total) }} f</td>
+                                        <td>{{ number_format($achat->montant_total) }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

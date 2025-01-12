@@ -50,8 +50,8 @@
                         <tr>
                             <td>{{ $produit->nom }}</td>
                             <td>{{ $produit->quantite_stock }}</td>
-                            <td>{{ number_format($produit->prix_achat, 2) }} f</td>
-                            <td>{{ number_format($produit->prix_vente, 2) }} f</td>
+                            <td>{{ number_format($produit->prix_achat, 2) }}</td>
+                            <td>{{ number_format($produit->prix_vente, 2) }}</td>
                             <td>
                                 <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
                                     data-bs-target="#editProduitModal{{ $produit->id }}">

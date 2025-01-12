@@ -2,17 +2,17 @@
 <nav class="bottom-nav">
     <div class="row text-center g-0">
         <div class="col">
-            <a href="{{ route('dashboard') }}"
-                class="btn btn-light w-100 py-3 {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                <i class="fas fa-home"></i><br>
-                Accueil
-            </a>
-        </div>
-        <div class="col">
             <a href="{{ route('ventes.create') }}"
                 class="btn btn-light w-100 py-3 {{ request()->routeIs('ventes.create') ? 'active' : '' }}">
                 <i class="fas fa-shopping-cart"></i><br>
                 Vente
+            </a>
+        </div>
+        <div class="col">
+            <a href="{{ route('dashboard') }}"
+                class="btn btn-light w-100 py-3 {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <i class="fas fa-home"></i><br>
+                Accueil
             </a>
         </div>
         <div class="col">
@@ -87,18 +87,41 @@
         margin-bottom: 5px;
     }
 
-    .bottom-nav .dropdown-item:hover {
-        background-color: #f8f9fa;
-    }
-
-    .bottom-nav .dropdown-item i {
+    .bottom-nav .dropdown-item i,
+    .bottom-nav .btn i {
         width: 25px;
         margin-right: 10px;
         color: #6c757d;
+        transition: color 0.3s ease;
+    }
+
+    .bottom-nav .btn.active i,
+    .bottom-nav .btn[aria-expanded="true"] i {
+        color: #000000;
     }
 
     .content-area {
         margin-bottom: 70px;
         padding-bottom: 20px;
+    }
+
+    /* Supprimer les bordures et effets sur les boutons */
+    .bottom-nav .btn {
+        border: none !important;
+    }
+
+    .bottom-nav .btn:focus,
+    .bottom-nav .btn:active,
+    .bottom-nav .btn:hover {
+        box-shadow: none !important;
+        background-color: white !important;
+        outline: none !important;
+        border: none !important;
+    }
+
+    /* Style pour l'état actif */
+    .bottom-nav .btn.active {
+        background-color: white !important;
+        border: none !important;
     }
 </style>

@@ -51,7 +51,7 @@
                     <tr>
                         <th>Produit</th>
                         <th>Stock actuel</th>
-                        <th>Stock minimum</th>
+                        <th>Stock min</th>
                         <th>Prix achat</th>
                         <th>Prix vente</th>
                         <th>Actions</th>
@@ -63,8 +63,8 @@
                             <td>{{ $produit->nom }}</td>
                             <td>{{ $produit->quantite_stock }}</td>
                             <td>{{ $produit->stock_minimum }}</td>
-                            <td>{{ number_format($produit->prix_achat, 2) }} f</td>
-                            <td>{{ number_format($produit->prix_vente, 2) }} f</td>
+                            <td>{{ number_format($produit->prix_achat, 2) }}</td>
+                            <td>{{ number_format($produit->prix_vente, 2) }}</td>
                             <td>
                                 <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
                                     data-bs-target="#ajusterModal{{ $produit->id }}">

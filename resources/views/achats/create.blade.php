@@ -13,9 +13,9 @@
     <div class="container-fluid px-3 pb-5 mb-5">
         <div class="d-flex justify-content-between align-items-center py-3">
             <h2 class="h4 mb-0">Nouvel Achat</h2>
-            <a href="{{ route('dashboard') }}" class="btn btn-outline-secondary btn-sm">
+            <button onclick="goBack()" class="btn btn-outline-secondary btn-sm">
                 <i class="fas fa-times"></i>
-            </a>
+            </button>
         </div>
 
         <form action="{{ route('achats.store') }}" method="POST">
@@ -91,6 +91,13 @@
             const prix = parseFloat(document.getElementById('prix').value) || 0;
             const quantite = parseInt(document.getElementById('quantite').value) || 0;
             document.getElementById('total').value = (prix * quantite).toFixed(2);
+        }
+        function goBack() {
+            if (document.referrer) {
+                window.location.href = document.referrer;
+            } else {
+                window.location.href = "{{ route('dashboard') }}";
+            }
         }
     </script>
 </body>
